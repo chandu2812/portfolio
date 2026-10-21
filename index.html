@@ -11,13 +11,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
-    <!-- Progress bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Canvas Background -->
+    <canvas id="dataCanvas"></canvas>
 
     <header id="header">
         <div class="container">
@@ -31,6 +33,8 @@
                     <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#skills" class="nav-link">Skills</a></li>
                     <li><a href="#portfolio" class="nav-link">Projects</a></li>
+                    <li><a href="#certificates" class="nav-link">Certificates</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                     <li class="menu-close" onclick="closemenu()" aria-label="Close menu">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -51,18 +55,44 @@
 
             <div class="header-content">
                 <div class="header-text">
-                    <p class="role-tag">Data Engineer</p>
+                    <p class="role-tag"><span class="pulse-dot"></span> Data Engineer</p>
                     <h1>Hi, I'm <span class="highlight">Chandu</span></h1>
                     <p class="tagline">I design and build reliable data pipelines, ETL systems, and modern data
                         platforms that turn raw data into trusted, production-ready assets.</p>
                     <div class="header-cta">
                         <a href="#portfolio" class="btn btn-primary">View Projects</a>
-                        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                        <a href="#certificates" class="btn btn-outline">Certificates</a>
                     </div>
+
+                    <!-- Interactive Terminal Feature -->
+                    <div class="terminal-window glass">
+                        <div class="terminal-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="terminal-title">chandu@data-engineer:~</span>
+                        </div>
+                        <div class="terminal-body" id="terminalBody">
+                            <p>Welcome to my interactive terminal. Type <span class="cmd-hint">'help'</span> to see
+                                available commands.</p>
+                            <div id="terminalOutput"></div>
+                            <div class="terminal-input-line">
+                                <span class="prompt">➜ ~</span>
+                                <input type="text" id="terminalInput" autocomplete="off" spellcheck="false"
+                                    placeholder="Type a command...">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Terminal -->
+
                 </div>
                 <div class="header-image">
-                    <div class="image-ring">
-                        <img src="images/mainpic.jpg" alt="Chandu - Data Engineer">
+                    <div class="image-orbit">
+                        <div class="orbit-ring"></div>
+                        <div class="orbit-ring delay"></div>
+                        <div class="image-core">
+                            <img src="images/mainpic.jpg" alt="Chandu - Data Engineer">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,8 +108,10 @@
                     <h2 class="section-title">Building the backbone of data</h2>
                 </div>
                 <div class="about-grid">
-                    <div class="about-image reveal">
-                        <img src="images/about.jpg" alt="Chandu">
+                    <div class="about-image reveal tilt-card">
+                        <div class="tilt-inner">
+                            <img src="images/about.jpg" alt="Chandu">
+                        </div>
                     </div>
                     <div class="about-content reveal">
                         <p class="about-lead">I'm a Data Engineer focused on designing scalable pipelines, reliable
@@ -89,15 +121,15 @@
                             orchestration, and serving curated datasets. I write clean, maintainable code and prefer
                             systems that are simple, observable, and production-ready.</p>
                         <div class="about-stats">
-                            <div class="stat">
+                            <div class="stat glass">
                                 <span class="stat-num">Python</span>
                                 <span class="stat-label">Core Language</span>
                             </div>
-                            <div class="stat">
+                            <div class="stat glass">
                                 <span class="stat-num">SQL</span>
                                 <span class="stat-label">Daily Driver</span>
                             </div>
-                            <div class="stat">
+                            <div class="stat glass">
                                 <span class="stat-num">Cloud</span>
                                 <span class="stat-label">AWS / Modern Stack</span>
                             </div>
@@ -107,119 +139,120 @@
             </div>
         </section>
 
-        <!-- SKILLS -->
+        <!-- SKILLS (BENTO GRID) -->
         <section id="skills" class="section section-alt">
             <div class="container">
                 <div class="section-header reveal">
                     <span class="section-label">Expertise</span>
                     <h2 class="section-title">Skills & Tools</h2>
                 </div>
-                <div class="skills-grid">
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
-                                <path
-                                    d="M9.796 1.343c-.115-.8-.692-1.455-1.487-1.455-.825 0-1.503.542-1.487 1.455l.005.028c.015.09.03.18.05.268.04.17.09.33.15.48.06.15.13.29.21.42.08.13.17.25.27.36.1.11.21.2.33.28.12.08.25.14.39.19.14.05.29.08.44.09.15.01.3.01.45 0 .15-.01.3-.04.44-.09.14-.05.27-.11.39-.19.12-.08.23-.17.33-.28.1-.11.19-.23.27-.36.08-.13.15-.27.21-.42.06-.15.11-.31.15-.48.02-.09.035-.18.05-.268l.005-.028zM8 0c1.105 0 2 .895 2 2s-.895 2-2 2-2-.895-2-2 .895-2 2-2" />
-                            </svg>
+
+                <!-- Bento Grid -->
+                <div class="bento-grid">
+                    <!-- Large Feature Card (Span 2 columns) -->
+                    <div class="bento-card glass reveal tilt-card span-2-col">
+                        <div class="tilt-inner">
+                            <div class="skill-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                                    <path
+                                        d="M9.796 1.343c-.115-.8-.692-1.455-1.487-1.455-.825 0-1.503.542-1.487 1.455l.005.028c.015.09.03.18.05.268.04.17.09.33.15.48.06.15.13.29.21.42.08.13.17.25.27.36.1.11.21.2.33.28.12.08.25.14.39.19.14.05.29.08.44.09.15.01.3.01.45 0 .15-.01.3-.04.44-.09.14-.05.27-.11.39-.19.12-.08.23-.17.33-.28.1-.11.19-.23.27-.36.08-.13.15-.27.21-.42.06-.15.11-.31.15-.48.02-.09.035-.18.05-.268l.005-.028zM8 0c1.105 0 2 .895 2 2s-.895 2-2 2-2-.895-2-2 .895-2 2-2" />
+                                </svg>
+                            </div>
+                            <h3>Core Data Stack</h3>
+                            <p style="color: var(--text-muted); margin-bottom: 16px; font-size: 14px;">The foundation of
+                                my daily workflow for processing and analyzing data.</p>
+                            <div class="bento-tags">
+                                <span>Python</span><span>SQL</span><span>Pandas / Polars</span><span>Apache
+                                    Spark</span><span>R</span>
+                            </div>
                         </div>
-                        <h3>Languages</h3>
-                        <ul>
-                            <li>Python</li>
-                            <li>SQL</li>
-                            <li>Bash / Shell</li>
-                            <li>R (occasional)</li>
-                        </ul>
                     </div>
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V2zm4 0v3h4V2z" />
-                            </svg>
+
+                    <!-- Tall Card (Span 2 rows) -->
+                    <div class="bento-card glass reveal tilt-card span-2-row">
+                        <div class="tilt-inner">
+                            <div class="skill-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.777 10.5 8 10.5s4.757.725 5.468 1.87A7 7 0 0 0 8 1" />
+                                </svg>
+                            </div>
+                            <h3>Cloud & DevOps</h3>
+                            <ul style="margin-top: 16px;">
+                                <li>AWS (S3, Glue, Lambda, EMR)</li>
+                                <li>Docker</li>
+                                <li>Git / GitHub Actions</li>
+                                <li>Terraform (basics)</li>
+                                <li>CI/CD for data pipelines</li>
+                                <li>Observability & monitoring</li>
+                            </ul>
                         </div>
-                        <h3>Data Processing</h3>
-                        <ul>
-                            <li>Pandas / Polars</li>
-                            <li>Apache Spark</li>
-                            <li>dbt</li>
-                            <li>Apache Airflow</li>
-                        </ul>
                     </div>
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="M1.333 2.667C1.333 1.194 4.28 0 8 0s6.667 1.194 6.667 2.667V4c0 1.473-2.947 2.667-6.667 2.667S1.333 5.473 1.333 4z" />
-                                <path
-                                    d="M1.333 6.334v3C1.333 10.805 4.28 12 8 12s6.667-1.194 6.667-2.667V6.334a6.5 6.5 0 0 1-1.458.79C11.81 7.684 9.967 8 8 8s-3.809-.317-5.208-.876a6.5 6.5 0 0 1-1.458-.79z" />
-                                <path
-                                    d="M14.667 11.668a6.5 6.5 0 0 1-1.458.789c-1.4.56-3.242.876-5.209.876-1.966 0-3.809-.316-5.208-.876a6.5 6.5 0 0 1-1.458-.79v1.666C1.333 14.806 4.28 16 8 16s6.667-1.194 6.667-2.667z" />
-                            </svg>
+
+                    <!-- Standard Cards -->
+                    <div class="bento-card glass reveal tilt-card">
+                        <div class="tilt-inner">
+                            <div class="skill-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V2zm4 0v3h4V2z" />
+                                </svg>
+                            </div>
+                            <h3>Orchestration</h3>
+                            <ul>
+                                <li>Apache Airflow</li>
+                                <li>dbt</li>
+                            </ul>
                         </div>
-                        <h3>Storage & Warehouses</h3>
-                        <ul>
-                            <li>PostgreSQL / MySQL</li>
-                            <li>Snowflake / BigQuery</li>
-                            <li>Amazon S3 / GCS</li>
-                            <li>Data Lakes (Parquet, Iceberg)</li>
-                        </ul>
                     </div>
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.777 10.5 8 10.5s4.757.725 5.468 1.87A7 7 0 0 0 8 1" />
-                            </svg>
+
+                    <div class="bento-card glass reveal tilt-card">
+                        <div class="tilt-inner">
+                            <div class="skill-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M1.333 2.667C1.333 1.194 4.28 0 8 0s6.667 1.194 6.667 2.667V4c0 1.473-2.947 2.667-6.667 2.667S1.333 5.473 1.333 4z" />
+                                    <path
+                                        d="M1.333 6.334v3C1.333 10.805 4.28 12 8 12s6.667-1.194 6.667-2.667V6.334a6.5 6.5 0 0 1-1.458.79C11.81 7.684 9.967 8 8 8s-3.809-.317-5.208-.876a6.5 6.5 0 0 1-1.458-.79z" />
+                                    <path
+                                        d="M14.667 11.668a6.5 6.5 0 0 1-1.458.789c-1.4.56-3.242.876-5.209.876-1.966 0-3.809-.316-5.208-.876a6.5 6.5 0 0 1-1.458-.79v1.666C1.333 14.806 4.28 16 8 16s6.667-1.194 6.667-2.667z" />
+                                </svg>
+                            </div>
+                            <h3>Warehouses</h3>
+                            <ul>
+                                <li>Snowflake / BigQuery</li>
+                                <li>PostgreSQL</li>
+                            </ul>
                         </div>
-                        <h3>Cloud & DevOps</h3>
-                        <ul>
-                            <li>AWS (S3, Glue, Lambda, EMR)</li>
-                            <li>Docker</li>
-                            <li>Git / GitHub Actions</li>
-                            <li>Terraform (basics)</li>
-                        </ul>
                     </div>
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                                <path
-                                    d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0m2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0" />
-                            </svg>
+
+                    <div class="bento-card glass reveal tilt-card">
+                        <div class="tilt-inner">
+                            <div class="skill-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                                    <path
+                                        d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0m2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0" />
+                                </svg>
+                            </div>
+                            <h3>Streaming</h3>
+                            <ul>
+                                <li>Apache Kafka</li>
+                                <li>AWS Kinesis</li>
+                            </ul>
                         </div>
-                        <h3>Streaming & Messaging</h3>
-                        <ul>
-                            <li>Apache Kafka</li>
-                            <li>AWS Kinesis</li>
-                            <li>Event-driven design</li>
-                        </ul>
-                    </div>
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                <path
-                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                            </svg>
-                        </div>
-                        <h3>Practices</h3>
-                        <ul>
-                            <li>Data modeling (dimensional)</li>
-                            <li>Data quality & testing</li>
-                            <li>CI/CD for data pipelines</li>
-                            <li>Observability & monitoring</li>
-                        </ul>
                     </div>
                 </div>
+                <!-- End Bento Grid -->
+
             </div>
         </section>
 
@@ -229,11 +262,11 @@
                 <div class="section-header reveal">
                     <span class="section-label">Work</span>
                     <h2 class="section-title">Featured Projects</h2>
-                    <p class="section-desc">Selected work focused on pipelines, analytics engineering, and production
-                        data systems.</p>
+                    <p class="section-desc">Selected work focused on pipelines, databases, and production-minded data
+                        systems.</p>
                 </div>
                 <div class="work-list">
-                    <article class="work reveal">
+                    <article class="work glass reveal">
                         <div class="work-image">
                             <img src="images/project1.png" alt="Cancer Prediction Data Pipeline">
                         </div>
@@ -246,21 +279,23 @@
                             <h3>Cancer Diagnosis Data Pipeline</h3>
                             <p>End-to-end pipeline: data cleaning with Pandas, feature engineering, and a classification
                                 model. Structured for reproducibility and easy extension into a scheduled job.</p>
-                            <a href="https://github.com/chandu2812/cancer-data-prediction" target="_blank"
-                                rel="noopener" class="work-link">
-                                View on GitHub
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
-                                    <path fill-rule="evenodd"
-                                        d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
-                                </svg>
-                            </a>
+                            <div class="work-links">
+                                <a href="https://github.com/chandu2812/cancer-data-prediction" target="_blank"
+                                    rel="noopener" class="work-link">
+                                    GitHub
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5" />
+                                        <path fill-rule="evenodd"
+                                            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z" />
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </article>
 
-                    <article class="work reveal">
+                    <article class="work glass reveal">
                         <div class="work-image">
                             <img src="images/project3.png" alt="Udyog - Online Job Portal">
                         </div>
@@ -274,8 +309,7 @@
                             <h3>Udyog – Online Job Portal</h3>
                             <p>DBMS-focused job portal with 14 BCNF-normalized tables, ER/EER modeling, indexing,
                                 transactions, concurrency control, and recovery. Built with MySQL 8 (InnoDB) + Flask.
-                                Demonstrates ACID properties, row-level locking, query optimization, and role-based
-                                security.</p>
+                            </p>
                             <div class="work-links">
                                 <a href="https://doable-browbeat-swarm.ngrok-free.dev" target="_blank" rel="noopener"
                                     class="work-link">
@@ -301,7 +335,7 @@
                         </div>
                     </article>
 
-                    <article class="work reveal">
+                    <article class="work glass reveal">
                         <div class="work-image placeholder">
                             <span>Coming Soon</span>
                         </div>
@@ -330,47 +364,174 @@
                     <h2 class="section-title">Mini Projects</h2>
                 </div>
                 <div class="mini-grid">
-                    <article class="mini-card reveal">
-                        <div class="mini-image">
-                            <img src="images/budget plan.jpg" alt="Budget Planning App">
-                        </div>
-                        <div class="mini-body">
-                            <h3>Budget Planning App</h3>
-                            <p>Interactive web app to track income, expenses, and savings. Clean UI and practical data
-                                handling.</p>
-                            <a href="https://budget-plan-sable.vercel.app/login" target="_blank" rel="noopener"
-                                class="mini-link">Live Demo →</a>
-                        </div>
-                    </article>
-                    <article class="mini-card reveal">
-                        <div class="mini-image">
-                            <img src="images/stock market.png" alt="Stock Market Prediction">
-                        </div>
-                        <div class="mini-body">
-                            <h3>Stock Market LSTM Dashboard</h3>
-                            <p>Next-day closing price prediction using LSTM. Built with modern tooling and a live
-                                dashboard.</p>
-                            <a href="https://blink-ai-stock-market-lstm-dashboard-bvu7zkrq.sites.blink.new"
-                                target="_blank" rel="noopener" class="mini-link">Live Demo →</a>
+                    <article class="mini-card glass reveal tilt-card">
+                        <div class="tilt-inner">
+                            <div class="mini-image">
+                                <img src="images/budget plan.jpg" alt="Budget Planning App">
+                            </div>
+                            <div class="mini-body">
+                                <h3>Budget Planning App</h3>
+                                <p>Interactive web app to track income, expenses, and savings. Clean UI and practical
+                                    data handling.</p>
+                                <a href="https://budget-plan-sable.vercel.app/login" target="_blank" rel="noopener"
+                                    class="mini-link">Live Demo →</a>
+                            </div>
                         </div>
                     </article>
-                    <article class="mini-card reveal">
-                        <div class="mini-image placeholder">
-                            <span>Next</span>
+                    <article class="mini-card glass reveal tilt-card">
+                        <div class="tilt-inner">
+                            <div class="mini-image">
+                                <img src="images/stock market.png" alt="Stock Market Prediction">
+                            </div>
+                            <div class="mini-body">
+                                <h3>Stock Market LSTM Dashboard</h3>
+                                <p>Next-day closing price prediction using LSTM. Built with modern tooling and a live
+                                    dashboard.</p>
+                                <a href="https://blink-ai-stock-market-lstm-dashboard-bvu7zkrq.sites.blink.new"
+                                    target="_blank" rel="noopener" class="mini-link">Live Demo →</a>
+                            </div>
                         </div>
-                        <div class="mini-body">
-                            <h3>Data Quality Toolkit</h3>
-                            <p>Reusable checks and validation helpers for pipeline testing. Great for learning
-                                production habits.</p>
-                            <span class="mini-link muted">Coming soon</span>
+                    </article>
+                    <article class="mini-card glass reveal tilt-card">
+                        <div class="tilt-inner">
+                            <div class="mini-image placeholder">
+                                <span>Next</span>
+                            </div>
+                            <div class="mini-body">
+                                <h3>Data Quality Toolkit</h3>
+                                <p>Reusable checks and validation helpers for pipeline testing. Great for learning
+                                    production habits.</p>
+                                <span class="mini-link muted">Coming soon</span>
+                            </div>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
+        <!-- CERTIFICATES -->
+        <section id="certificates" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Credentials</span>
+                    <h2 class="section-title">Internships & Certificates</h2>
+                    <p class="section-desc">Professional experience and credentials that back my data engineering
+                        journey.</p>
+                </div>
+
+                <h3 class="sub-heading reveal">Internships</h3>
+                <div class="cert-grid">
+                    <article class="cert-card glass reveal tilt-card">
+                        <div class="tilt-inner">
+                            <div class="cert-brand">
+                                <img src="images/3skill-logo.png" alt="3 Skill logo" class="cert-logo">
+                            </div>
+                            <div class="cert-meta">
+                                <span class="cert-status status-done">Completed</span>
+                                <h3>Data Analytics Intern</h3>
+                                <p class="cert-org">3Skill Training</p>
+                                <ul class="cert-points">
+                                    <li>Cleaned and processed an 8,400+ record retail dataset in Excel — handled missing
+                                        values and standardized date/currency fields for accurate analysis.</li>
+                                    <li>Analyzed $14.9M in revenue and $1.5M in profit using Pivot Tables to identify
+                                        top regions, customer segments, and high-margin product categories.</li>
+                                    <li>Built an interactive KPI dashboard tracking sales metrics, shipping costs, and
+                                        monthly revenue trends to support data-driven decisions.</li>
+                                </ul>
+                            </div>
+                            <a href="certificates/Certificate_INTERN261915_CH.%20Venkata%20chandu.pdf" target="_blank"
+                                rel="noopener" class="cert-action">View Certificate →</a>
+                        </div>
+                    </article>
+
+                    <article class="cert-card glass reveal tilt-card upcoming">
+                        <div class="tilt-inner">
+                            <div class="cert-badge pending">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0" />
+                                </svg>
+                            </div>
+                            <div class="cert-meta">
+                                <span class="cert-status status-soon">Expected · Month End</span>
+                                <h3>Internship Certificate</h3>
+                                <p class="cert-org">In progress</p>
+                                <p class="cert-desc">Second internship certificate arriving by the end of this month.
+                                    Slot reserved — update title & link when ready.</p>
+                            </div>
+                            <span class="cert-action muted">Coming soon</span>
+                        </div>
+                    </article>
+                </div>
+
+                <h3 class="sub-heading reveal" style="margin-top: 48px;">Certifications</h3>
+                <div class="cert-grid cert-grid-3">
+
+                    <!-- Certification 1 -->
+                    <article class="cert-card glass reveal tilt-card">
+                        <div class="tilt-inner">
+                            <!-- Logo Container -->
+                            <div class="cert-brand">
+                                <img src="images/infosys.png" alt="Certification 1 Logo" class="cert-logo">
+                            </div>
+                            <div class="cert-meta">
+                                <span class="cert-status status-cert">Certificate</span>
+                                <h3>Cloud Technologies</h3>
+                                <p class="cert-org">infosys |Springboard</p>
+                                <p class="cert-desc">Acquired fundamental knowledge of cloud computing architecture, services, and deployment models.</p>
+                            </div>
+                            <!-- PDF Link -->
+                            <a href="certificates/Cloud Technologies.pdf" target="_blank" rel="noopener"
+                                class="cert-action">View Certificate →</a>
+                        </div>
+                    </article>
+
+                    <!-- Certification 2 -->
+                    <article class="cert-card glass reveal tilt-card">
+                        <div class="tilt-inner">
+                            <!-- Logo Container -->
+                            <div class="cert-brand">
+                                <img src="images/hp.png" alt="Certification 2 Logo" class="cert-logo">
+                            </div>
+                            <div class="cert-meta">
+                                <span class="cert-status status-cert">Certificate</span>
+                                <h3>AI For Beginners</h3>
+                                <p class="cert-org">HP LIFE | HP FOUNDATION</p>
+                                <p class="cert-desc">Gained a foundational understanding of AI concepts, business applications, and the vital role of data.
+                                </div>
+                            <!-- PDF Link -->
+                            <a href="certificates/hp-2.pdf" target="_blank" rel="noopener"
+                                class="cert-action">View Certificate →</a>
+                        </div>
+                    </article>
+
+                    <!-- Certification 3 -->
+                    <article class="cert-card glass reveal tilt-card">
+                        <div class="tilt-inner">
+                            <!-- Logo Container -->
+                            <div class="cert-brand">
+                                <img src="images/cert-logo-3.png" alt="Certification 3 Logo" class="cert-logo">
+                            </div>
+                            <div class="cert-meta">
+                                <span class="cert-status status-cert">Certificate</span>
+                                <h3>Certification Title 3</h3>
+                                <p class="cert-org">Issuing Organization 3</p>
+                                <p class="cert-desc">Brief description of the certification and what it covers.</p>
+                            </div>
+                            <!-- PDF Link -->
+                            <a href="certificates/certificate3.pdf" target="_blank" rel="noopener"
+                                class="cert-action">View Certificate →</a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
         <!-- EDUCATION -->
-        <section id="education" class="section">
+        <section id="education" class="section section-alt">
             <div class="container">
                 <div class="section-header reveal">
                     <span class="section-label">Background</span>
@@ -379,15 +540,15 @@
                 <div class="timeline reveal">
                     <div class="timeline-item">
                         <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2024 – Present</span>
-                            <h3>B.Tech in Computer Science</h3>
+                        <div class="timeline-content glass">
+                            <span class="timeline-date">2024 – Present(III Year)</span>
+                            <h3>B.Tech in Artificial Intelligence & Data Science</h3>
                             <p>Saveetha School of Engineering, Chennai</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-marker"></div>
-                        <div class="timeline-content">
+                        <div class="timeline-content glass">
                             <span class="timeline-date">2022 – 2024</span>
                             <h3>Intermediate Education (Class 11 & 12)</h3>
                             <p>Sri Chaitanya Junior College</p>
@@ -395,7 +556,7 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-marker"></div>
-                        <div class="timeline-content">
+                        <div class="timeline-content glass">
                             <span class="timeline-date">Completed 2022</span>
                             <h3>Secondary School Certificate (SSC) – Class 10</h3>
                             <p>Sri Venkateshwara Children's High School</p>
@@ -403,7 +564,7 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-marker"></div>
-                        <div class="timeline-content">
+                        <div class="timeline-content glass">
                             <span class="timeline-date">Self-Study</span>
                             <h3>Data Engineering Path</h3>
                             <p>Data structures, algorithms, SQL, Python, Spark, Airflow, dbt, and cloud data platforms
@@ -415,7 +576,7 @@
         </section>
 
         <!-- CONTACT -->
-        <section id="contact" class="section section-alt">
+        <section id="contact" class="section">
             <div class="container">
                 <div class="section-header reveal">
                     <span class="section-label">Contact</span>
@@ -425,7 +586,7 @@
                 </div>
                 <div class="contact-grid">
                     <div class="contact-info reveal">
-                        <a href="mailto:venkatchandu106@gmail.com" class="contact-item">
+                        <a href="mailto:venkatchandu106@gmail.com" class="contact-item glass">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 viewBox="0 0 16 16">
                                 <path
@@ -433,7 +594,7 @@
                             </svg>
                             <span>venkatchandu106@gmail.com</span>
                         </a>
-                        <a href="tel:+916281564528" class="contact-item">
+                        <a href="tel:+916281564528" class="contact-item glass">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -476,7 +637,7 @@
                             </a>
                         </div>
                     </div>
-                    <form name="submit-to-google-sheet" class="contact-form reveal">
+                    <form name="submit-to-google-sheet" class="contact-form glass reveal">
                         <div class="form-group">
                             <input type="text" name="Name" placeholder="Your Name" required>
                         </div>
